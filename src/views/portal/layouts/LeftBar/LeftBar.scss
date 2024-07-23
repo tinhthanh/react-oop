@@ -1,0 +1,15 @@
+    .custom-menu .ant-menu-item-selected {
+        @apply bg-blue-900 text-white;
+        ::before {
+            @apply bg-blue-400;
+            position: absolute;
+            left: 0px;
+            margin-top: calc( 2% - 0px );
+            height: 80%;
+            border-radius: 0px 15px 15px 0px;
+            display: flex;
+            width: 8px;
+            justify-items: center;
+            content: "";
+        }
+    }

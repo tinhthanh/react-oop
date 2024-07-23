@@ -1,0 +1,22 @@
+// custom ant
+// custom for table 
+.ant-table-thead .ant-table-cell {
+     @apply text-xs font-medium leading-4 text-gray-500 bg-white 
+}
+.ant-table-wrapper .ant-table-thead >tr>th {
+    @apply text-gray-500
+}
+.ant-pagination-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: absolute;
+    right: 20px;
+}
+.ant-pagination-total-text {
+    position: absolute;
+    left: 20px;
+}
+.ck-editor__editable {
+    min-height: 200px !important;
+}
