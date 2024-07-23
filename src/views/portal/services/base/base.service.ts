@@ -21,11 +21,6 @@ export abstract class BaseService<T extends EntityModel> {
       console.error("Failed to open database:", error);
     });
   }
-   private synsJob(list: T[]) {
-    this.db.table(this.tableName).clear().then( ()=> {
-      this.db.table(this.tableName).bulkAdd(list);
-    });
-  }
   async search<F>(
     filter: Partial<F> & Partial<T> & { pageSize: number; pageNumber: number }
   ): Promise<ResponseBase<T>> {
@@ -110,7 +105,7 @@ export abstract class BaseService<T extends EntityModel> {
           this.db.table(this.tableName).bulkAdd(list);
         });
       }
-    }
+    };
   }
 
   async add(data: T): Promise<void> {
@@ -150,7 +145,7 @@ export abstract class BaseService<T extends EntityModel> {
 
 // get max seqNo of list
 export const getMaxSeqNo = <T extends EntityModel>(list: T[]) => list.reduce((max, item) => {
-  if(item.sync === false) return max
+  if(item.sync === false) return max;
   const seqNo = Number(item.seqNo || 0);
   return seqNo > max ? seqNo : max;
 }, 0);
@@ -169,4 +164,4 @@ export const megere =  <T extends EntityModel>(local: T[] ,remoteList:  T[] ): T
     {}
   );
   return Object.values(mapRemoteList);
-}
+};
