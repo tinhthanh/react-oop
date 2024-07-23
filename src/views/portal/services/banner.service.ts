@@ -18,6 +18,9 @@ export class BannerServie extends BaseService<BannerModel> {
     fields(): { [K in keyof BannerModel]: keyof BannerModel; } {
         return {
             id: "id",
+            seqNo:"seqNo",
+            deleted: "deleted",
+            sync: "sync",
             title: "title",
             descript: "descript",
             image: "image",

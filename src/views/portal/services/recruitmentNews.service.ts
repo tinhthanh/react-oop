@@ -59,6 +59,9 @@ export class RecruitmentNewsService extends BaseService<RecruitmentNewsModel> {
   fields(): { [K in keyof RecruitmentNewsModel]: keyof RecruitmentNewsModel } {
     return {
       id: "id",
+      seqNo:"seqNo",
+      deleted: "deleted",
+      sync: "sync",
       createdBy: "createdBy",
       createdDate: "createdDate",
       updatedBy: "updatedBy",

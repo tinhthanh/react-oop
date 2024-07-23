@@ -29,7 +29,7 @@ export default function BannerCurdHook() {
 }
     function onSubmit(data: BannerModel) {
         if(data.id) {
-            bannerService.edit(data.id,data).then(() => {
+            bannerService.edit(data).then(() => {
                navigate(AppRouter.banner);
              });
         } else {

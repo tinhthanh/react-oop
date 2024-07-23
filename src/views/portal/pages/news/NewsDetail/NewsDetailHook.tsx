@@ -31,7 +31,7 @@ function NewsDetailHook() {
     }
     function onSubmit(data: News) {
          if(data.id) {
-            newService.edit(data.id,data).then(() => {
+            newService.edit(data).then(() => {
                 navigate(AppRouter.news);
               });
          } else {

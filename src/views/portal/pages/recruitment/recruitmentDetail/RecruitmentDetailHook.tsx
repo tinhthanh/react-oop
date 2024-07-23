@@ -35,7 +35,7 @@ function RecruitmentDetailHook() {
     }
     function onSubmit(data: RecruitmentNewsModel) {
         if(data.id) {
-           recruitmentNewsServie.edit(data.id,data).then(() => {
+           recruitmentNewsServie.edit(data).then(() => {
                navigate(AppRouter.recruitment);
              });
         } else {

@@ -23,6 +23,9 @@ export class NewsServie extends BaseService<News> {
     fields(): { [K in keyof News]: keyof News; } {
         return {
             id: "id",
+            seqNo:"seqNo",
+            deleted: "deleted",
+            sync: "sync",
             createdBy: "createdBy",
             createdDate: "createdDate",
             updatedBy:"updatedBy",

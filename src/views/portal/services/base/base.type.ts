@@ -25,4 +25,7 @@ export interface ResponseBase<T> {
   
   export interface EntityModel {
     id: string | null;
+    seqNo?: number;
+    deleted?: boolean;
+    sync?: boolean;
   }
