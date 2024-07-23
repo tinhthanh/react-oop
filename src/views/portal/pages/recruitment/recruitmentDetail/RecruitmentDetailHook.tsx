@@ -4,10 +4,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AppRouter } from '../../../../../RouterType';
 import { RecruitmentNewsModel, RecruitmentNewsService } from '../../../services/recruitmentNews.service';
 import { useForm } from 'react-hook-form';
-import { container } from 'tsyringe';
+import { inject } from '../../../../../utils/inject';
+import { ProductServie } from '../../../services/product.service';
 
 function RecruitmentDetailHook() {
-    const [recruitmentNewsServie] = useState(container.resolve(RecruitmentNewsService));
+    const [recruitmentNewsServie] = useState(inject(RecruitmentNewsService));
+    const [productServie] = useState(inject(ProductServie));
+    
     const [componentState] = useState(new RecruitmentDetailState());
     const { id } = useParams();
     const navigate  = useNavigate();
@@ -46,6 +49,9 @@ function RecruitmentDetailHook() {
      }
     useEffect(() => {
         // userEffect implement here
+        productServie.search({pageSize: 10, pageNumber: 1 }).then( rs => {
+            console.log(rs);
+        })
         loadPage();
     }, []);
 

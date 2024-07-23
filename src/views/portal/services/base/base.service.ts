@@ -30,7 +30,7 @@ export abstract class BaseService<T extends EntityModel> {
     const maxSeqNo = getMaxSeqNo(local);
     const remoteList =  await this.getBySeqNo(maxSeqNo);
     const allItems = megere(local, remoteList); 
-    this.cache().setAll(allItems);
+    this.cache().setAll(remoteList);
     const totalElements = allItems.length;
     const totalPages = Math.ceil(totalElements / pageSize);
     const elements = allItems.slice(
