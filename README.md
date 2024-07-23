@@ -1,9 +1,8 @@
 
 ## Run Local
 Open project terminal:\
-Step 1: `npm run app-init`\
-Step 2: `npm install`\
-Step 3: `npm start`\
+Step 1: `npm install`\
+Step 2: `npm start`\
 Open http://localhost:1301 to view it in the browser
 
 
