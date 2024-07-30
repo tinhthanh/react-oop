@@ -3,17 +3,17 @@ import { BaseService } from './base/base.service';
 import { Injectable } from "../../../utils/inject";
 
 export interface ProductModel extends EntityModel {
-    cost: number
-    deleted: boolean
-    groupName: string
-    id: string
-    isActive: boolean
-    name: string
-    onHand: number
-    sellingPrice: number
-    seqNo: number
-    sync: boolean
-    type: number
+    cost: number;
+    deleted: boolean;
+    groupName: string;
+    id: string;
+    isActive: boolean;
+    name: string;
+    onHand: number;
+    sellingPrice: number;
+    seqNo: number;
+    sync: boolean;
+    type: number;
   }
 @Injectable
 export class ProductServie extends BaseService<ProductModel> {
@@ -30,7 +30,7 @@ export class ProductServie extends BaseService<ProductModel> {
         seqNo: "seqNo",
         sync: "sync",
         type: "type"
-       }
+       };
     }
     constructor() {
         super("PRODUCT");

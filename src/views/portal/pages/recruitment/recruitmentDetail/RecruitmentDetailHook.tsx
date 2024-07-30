@@ -51,7 +51,7 @@ function RecruitmentDetailHook() {
         // userEffect implement here
         productServie.search({pageSize: 10, pageNumber: 1 }).then( rs => {
             console.log(rs);
-        })
+        });
         loadPage();
     }, []);
 
