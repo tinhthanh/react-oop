@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-     "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
     "start": "npm run lint && npm run dev",
     "dev": "tsc && vite --port 1301 --mode localdev",
     "build": "npm run build:prod",
@@ -25,6 +25,7 @@
     "dayjs": "^1.11.11",
     "dexie": "^4.0.8",
     "express": "^4.19.1",
+    "firebase": "^10.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.5",
