@@ -16,6 +16,8 @@ import { AppRouter } from "./RouterType";
 import LayoutPortalWithProvider from "./views/portal/layouts/LayoutPortal";
 import requestPermission from "./request-permission";
 import listenForMessages from "./listen-for-messages";
+import { EmployeeList } from "./views/portal/pages/employee/employee/employeeList";
+import EmployeeDetail from "./views/portal/pages/employee/employeeDetail/employeeDetail";
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -78,7 +80,15 @@ function App(): React.JSX.Element {
         {
           path: AppRouter.recruitmentDetail,
           element: <RecruitmentDetail />,
-        }
+        },
+        {
+          path: AppRouter.employee,
+          element: <EmployeeList />,
+        },
+        {
+          path: AppRouter.employeeDetail,
+          element: <EmployeeDetail />,
+        },
       ],
     }
   ]);

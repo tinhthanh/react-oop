@@ -45,7 +45,10 @@ const menu = [
         key: AppRouter.recruitment,
         label: 'Tuyển dụng',
       },
-     
+      {
+        key: AppRouter.employee,
+        label: 'Nhân viên',
+      },
       {
         key: 'contract',
         label: 'Ký hợp đồng',
