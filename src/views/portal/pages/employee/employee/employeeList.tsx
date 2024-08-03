@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AppRouter } from "../../../../../RouterType";
 import { Pagination, Space, TableProps, Table, Popover } from "antd";

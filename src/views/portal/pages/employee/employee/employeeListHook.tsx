@@ -30,18 +30,18 @@ function EmployeeHook() {
    }
 
     function handleClickEdit(id: string) {
-        navigate(AppRouter.employees + `/${id}`);
+        navigate(AppRouter.employee + `/${id}`);
     }
 
     function handleClickView(id: string) {
-        navigate(AppRouter.employees + `/${id}`);
+        navigate(AppRouter.employee + `/${id}`);
     }
    
 
     useEffect(() => {
         // userEffect implement here
         loadPage();
-        setActiveMenuItem([AppRouter.employees]);
+        setActiveMenuItem([AppRouter.employee]);
         setBreadcrumb([{
             className:"text-blue-500",
             title: 'Nhân sự' },{ title: 'Nhân viên' }]); 
