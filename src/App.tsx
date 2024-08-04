@@ -14,14 +14,14 @@ import { RecruitmentList } from "./views/portal/pages/recruitment/recruitment/Re
 import RecruitmentDetail from "./views/portal/pages/recruitment/recruitmentDetail/RecruitmentDetail";
 import { AppRouter } from "./RouterType";
 import LayoutPortalWithProvider from "./views/portal/layouts/LayoutPortal";
-import requestPermission from "./request-permission";
-import listenForMessages from "./listen-for-messages";
+// import requestPermission from "./request-permission";
+// import listenForMessages from "./listen-for-messages";
 
 function App(): React.JSX.Element {
-  useEffect(() => {
-    requestPermission();
-    listenForMessages();
-  }, []);
+  // useEffect(() => {
+  //   requestPermission();
+  //   listenForMessages();
+  // }, []);
   const router = createBrowserRouter([
     {
       path: AppRouter.noMatch,
