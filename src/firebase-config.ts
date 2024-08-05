@@ -2,14 +2,14 @@
 // import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 // const firebaseConfig = {
-//     apiKey: "AIzaSyAOi_TN4at6W__9Jjzz31EEzMxQS5nf1s0",
-//     authDomain: "vetgo-01.firebaseapp.com",
-//     databaseURL: "https://vetgo-01-default-rtdb.asia-southeast1.firebasedatabase.app",
-//     projectId: "vetgo-01",
-//     storageBucket: "vetgo-01.appspot.com",
-//     messagingSenderId: "883303533949",
-//     appId: "1:883303533949:web:fcd2839a459ed1ae6e1014",
-//     measurementId: "G-TFR9L0R342"
+//     apiKey: "AIzaSyDvRLD_VHFJ1P5_8JZjHilD5fHXq_r2Mjc",
+//     authDomain: "prebookapp-f97c6.firebaseapp.com",
+//     databaseURL: "https://prebookapp-f97c6-default-rtdb.asia-southeast1.firebasedatabase.app",
+//     projectId: "prebookapp-f97c6",
+//     storageBucket: "prebookapp-f97c6.appspot.com",
+//     messagingSenderId: "35260848810",
+//     appId: "1:35260848810:web:aec35c424362750f0e4ed3",
+//     measurementId: "G-Q0CZFZ9N2T"
 // };
 
 // const app = initializeApp(firebaseConfig);

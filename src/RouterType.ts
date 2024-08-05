@@ -9,4 +9,5 @@ export class AppRouter {
     public static readonly newsView = '/portal/news-view';
     public static readonly recruitmentDetail = '/portal/recruitment-detail';
     public static readonly recruitment = '/portal/recruitment';
+    public static readonly notify = '/portal/notify';
   }

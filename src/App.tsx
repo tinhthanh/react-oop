@@ -14,14 +14,9 @@ import { RecruitmentList } from "./views/portal/pages/recruitment/recruitment/Re
 import RecruitmentDetail from "./views/portal/pages/recruitment/recruitmentDetail/RecruitmentDetail";
 import { AppRouter } from "./RouterType";
 import LayoutPortalWithProvider from "./views/portal/layouts/LayoutPortal";
-// import requestPermission from "./request-permission";
-// import listenForMessages from "./listen-for-messages";
-
+import Notify from "./views/portal/pages/notify/Notify";
 function App(): React.JSX.Element {
-  // useEffect(() => {
-  //   requestPermission();
-  //   listenForMessages();
-  // }, []);
+
   const router = createBrowserRouter([
     {
       path: AppRouter.noMatch,
@@ -78,7 +73,12 @@ function App(): React.JSX.Element {
         {
           path: AppRouter.recruitmentDetail,
           element: <RecruitmentDetail />,
-        }
+        },
+        {
+          path: AppRouter.notify,
+          element: <Notify />,
+        },
+        
       ],
     }
   ]);

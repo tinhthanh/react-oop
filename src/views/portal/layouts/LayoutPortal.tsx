@@ -52,6 +52,10 @@ const menu = [
         disabled: true
       },
     ],
+  },
+  {
+    key: AppRouter.notify,
+    label: 'Danh sách thông báo'
   }
 ];
 
