@@ -3,7 +3,7 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { BehaviorSubject, Observable } from "rxjs";
 import { Injectable } from "../../../utils/inject";
 import { MessagePayload } from "firebase/messaging/sw";
-interface ConfigFirebase {
+export interface ConfigFirebase {
     firebaseConfig: {
         apiKey: string;
         authDomain: string;
@@ -15,6 +15,19 @@ interface ConfigFirebase {
         measurementId: string;
     };
     vapidKey: string;
+    serviceAccount: {
+      type: string;
+      project_id: string;
+      private_key_id: string;
+      private_key: string;
+      client_email: string;
+      client_id: string;
+      auth_uri: string;
+      token_uri: string;
+      auth_provider_x509_cert_url: string;
+      client_x509_cert_url: string;
+      universe_domain: string;
+    };
 }
 export const SET_FIREBASE_CONFIG = 'SET_FIREBASE_CONFIG';
 @Injectable
@@ -32,6 +45,9 @@ export class NotifyService  {
     }
     getCouter(): Observable<MessagePayload[]> {
       return this.$message.asObservable();
+    }
+    getDeviceId(): Observable<string> {
+      return this.$deviceId.asObservable();
     }
    private getConfig(): ConfigFirebase | null  {
         const configStr = localStorage.getItem(SET_FIREBASE_CONFIG);
@@ -61,16 +77,19 @@ export class NotifyService  {
                     'Service Worker registered with scope:',
                     registration.scope
                   );
+                  navigator.serviceWorker.ready.then((registration) => {
+                    if (registration.active) {
+                      registration.active.postMessage({
+                       type: SET_FIREBASE_CONFIG,
+                       config: firebaseConfig.firebaseConfig,
+                     });
+                   console.log('Service Worker is active');
+                 } else {
+                   console.log('Service Worker is not active');
+                 }
+                   });
                   // Kiểm tra trạng thái đăng ký
-                  if (registration.active) {
-                       registration.active.postMessage({
-                        type: SET_FIREBASE_CONFIG,
-                        config: firebaseConfig.firebaseConfig,
-                      });
-                    console.log('Service Worker is active');
-                  } else {
-                    console.log('Service Worker is not active');
-                  }
+                  
                 })
                 .catch((error) => {
                   console.error('Service Worker registration failed:', error);
@@ -95,10 +114,10 @@ export class NotifyService  {
         const app = this.getApp();
         const firebaseConfig = this.getConfig();
         if(app && firebaseConfig) {
-            const messaging = getMessaging(app);
             try {
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
+                  const messaging = getMessaging(app);
                   const token = await getToken(messaging, { vapidKey: firebaseConfig.vapidKey});
                   console.log('FCM Token:', token);
                   this.$deviceId.next(token);

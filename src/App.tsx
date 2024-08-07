@@ -19,12 +19,16 @@ function App(): React.JSX.Element {
 
   const router = createBrowserRouter([
     {
+      path: AppRouter.notify,
+      element: <Notify />,
+    },
+    {
       path: AppRouter.noMatch,
-      element: <Navigate to={AppRouter.default} replace />,
+      element: <Navigate to={AppRouter.notify} replace />,
     },
     {
       path: AppRouter.default,
-      element: <Navigate to={AppRouter.home} replace />,
+      element: <Navigate to={AppRouter.notify} replace />,
     },
     {
       path: AppRouter.home,
@@ -74,10 +78,7 @@ function App(): React.JSX.Element {
           path: AppRouter.recruitmentDetail,
           element: <RecruitmentDetail />,
         },
-        {
-          path: AppRouter.notify,
-          element: <Notify />,
-        },
+        
         
       ],
     }
