@@ -22,7 +22,13 @@ export class LeftBarState extends ComponentState {
             icon: "/assets/portal/left-bar/icon3.svg",
             name: 'Banner',
             matchPath: [AppRouter.banner, AppRouter.bannerCurd, new RegExp(`^\\${AppRouter.bannerCurd}\\/[^/]+$`)]
-        }
+        },
+        {
+            link: AppRouter.employee,
+            icon: "/assets/portal/left-bar/icon2.svg",
+            name: 'Nhân viên',
+            matchPath: [AppRouter.employee, AppRouter.employeeDetail, new RegExp(`^\\${AppRouter.employeeDetail}\\/[^/]+$`)]
+        },
     ];
 
     public init(): void {} 

@@ -6,6 +6,7 @@ import { Layout, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { AppRouter } from "../../../RouterType";
 import TopBar from "./TopBar/TopBar";
+import { Toaster } from 'sonner';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -45,18 +46,36 @@ const menu = [
         key: AppRouter.recruitment,
         label: 'Tuyển dụng',
       },
-     
+      {
+        key: AppRouter.employee,
+        label: 'Nhân viên',
+      },
       {
         key: 'contract',
         label: 'Ký hợp đồng',
         disabled: true
       },
     ],
+  },
+  {
+    key: 'sub3',
+    label: 'Management',
+    icon: (
+      <img
+        loading="lazy"
+         src="/assets/portal/menu/icon2.svg"
+        style={{ width: 20 }}
+        alt="Icon"
+      />
+    ),
+    children: [
+      {
+        key: AppRouter.browserTasks,
+        label: 'Browser Tasks',
+      },
+    ],
   }
 ];
-
-
-
 
 export function LayoutPortal(): React.JSX.Element {
   const { collapsed, setCollapsed , setActiveMenuItem} = useLayoutContext();
@@ -92,6 +111,7 @@ export function LayoutPortal(): React.JSX.Element {
           <TopBar/>
           <Outlet />
       </Layout>
+      <Toaster position="top-right" closeButton richColors />
     </Layout>
     </>
   );

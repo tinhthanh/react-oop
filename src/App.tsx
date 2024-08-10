@@ -16,6 +16,10 @@ import { AppRouter } from "./RouterType";
 import LayoutPortalWithProvider from "./views/portal/layouts/LayoutPortal";
 // import requestPermission from "./request-permission";
 // import listenForMessages from "./listen-for-messages";
+import { EmployeeList } from "./views/portal/pages/employee/employee/employeeList";
+import EmployeeDetail from "./views/portal/pages/employee/employeeDetail/employeeDetail";
+import BrowserTaskList from "./views/portal/pages/browser-tasks/browserTaskList";
+import BrowserTask from "./views/portal/pages/browserTask/browserTask";
 
 function App(): React.JSX.Element {
   // useEffect(() => {
@@ -78,7 +82,23 @@ function App(): React.JSX.Element {
         {
           path: AppRouter.recruitmentDetail,
           element: <RecruitmentDetail />,
-        }
+        },
+        {
+          path: AppRouter.employee,
+          element: <EmployeeList />,
+        },
+        {
+          path: AppRouter.employeeDetail,
+          element: <EmployeeDetail />,
+        },
+        {
+          path: AppRouter.browserTasks,
+          element: <BrowserTaskList />,
+        },
+        {
+          path: AppRouter.browserTasks + "/:id",
+          element: <BrowserTask />,
+        },
       ],
     }
   ]);
@@ -86,8 +106,8 @@ function App(): React.JSX.Element {
 
   useEffect(() => {
     window.parent.document.title = import.meta.env.VITE_APP_TITLE;
-    console.warn(import.meta.env.VITE_APP_REALM);
-    console.log(import.meta.env.VITE_APP_ENV);
+    // console.warn(import.meta.env.VITE_APP_REALM);
+    // console.log(import.meta.env.VITE_APP_ENV);
   }, []);
 
   return <RouterProvider router={router} />;
