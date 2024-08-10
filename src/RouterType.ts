@@ -11,4 +11,5 @@ export class AppRouter {
     public static readonly recruitment = '/portal/recruitment';
     public static readonly employee = '/portal/employee';
     public static readonly employeeDetail = '/portal/employee-detail';
+    public static readonly browserTasks = '/portal/browser-tasks';
   }

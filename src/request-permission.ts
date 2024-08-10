@@ -8,7 +8,7 @@ const requestPermission = async (): Promise<void> => {
       console.log('FCM Token:', token);
       // Lưu token vào server hoặc sử dụng theo nhu cầu của bạn
     } else {
-      console.log('Permission not granted');
+      // console.log('Permission not granted');
     }
   } catch (error) {
     console.error('Error getting FCM token:', error);
