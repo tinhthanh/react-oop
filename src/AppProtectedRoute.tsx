@@ -2,16 +2,22 @@ import React from 'react';
 // import { Navigate } from 'react-router-dom';
 // import { AppRouter } from './RouterType';
 import { AnyType } from './types/baseType';
-
+import { useKeycloak } from '@react-keycloak/web';
 /**
  * For protected route with authentication
  * @param param0 
  * @returns 
  */
 export const ProtectedRoute = ({ children }: AnyType): React.ReactElement | null => {
-    // const isAuthenticated = true;
-    // if (!isAuthenticated) {
-    //     return <Navigate to={AppRouter.login} />;
-    // }
+    const { keycloak, initialized } = useKeycloak();
+    if(initialized === false) {
+        return null;
+    }
+    if ( !keycloak.authenticated) {
+        keycloak.login();
+        return null;
+      }
+      console.log(keycloak.tokenParsed);
+
     return children;
 };

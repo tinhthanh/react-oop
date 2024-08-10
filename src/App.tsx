@@ -21,6 +21,7 @@ import EmployeeDetail from "./views/portal/pages/employee/employeeDetail/employe
 import BrowserTaskList from "./views/portal/pages/browser-tasks/browserTaskList";
 import BrowserTask from "./views/portal/pages/browserTask/browserTask";
 
+
 function App(): React.JSX.Element {
   // useEffect(() => {
   //   requestPermission();
@@ -38,9 +39,9 @@ function App(): React.JSX.Element {
     {
       path: AppRouter.home,
       element: (
-        <ProtectedRoute>
-          <LayoutPortalWithProvider />
-        </ProtectedRoute>
+               <ProtectedRoute>
+                   <LayoutPortalWithProvider />
+               </ProtectedRoute>
       ),
       children: [
         {
