@@ -14,18 +14,18 @@ import { RecruitmentList } from "./views/portal/pages/recruitment/recruitment/Re
 import RecruitmentDetail from "./views/portal/pages/recruitment/recruitmentDetail/RecruitmentDetail";
 import { AppRouter } from "./RouterType";
 import LayoutPortalWithProvider from "./views/portal/layouts/LayoutPortal";
-import requestPermission from "./request-permission";
-import listenForMessages from "./listen-for-messages";
+// import requestPermission from "./request-permission";
+// import listenForMessages from "./listen-for-messages";
 import { EmployeeList } from "./views/portal/pages/employee/employee/employeeList";
 import EmployeeDetail from "./views/portal/pages/employee/employeeDetail/employeeDetail";
 import BrowserTaskList from "./views/portal/pages/browser-tasks/browserTaskList";
 import BrowserTask from "./views/portal/pages/browserTask/browserTask";
 
 function App(): React.JSX.Element {
-  useEffect(() => {
-    requestPermission();
-    listenForMessages();
-  }, []);
+  // useEffect(() => {
+  //   requestPermission();
+  //   listenForMessages();
+  // }, []);
   const router = createBrowserRouter([
     {
       path: AppRouter.noMatch,
