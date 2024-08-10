@@ -38,6 +38,7 @@
     "tsyringe": "^4.8.0",
     "uuid": "^10.0.0",
     "validator": "^13.11.0",
+    "vg-table-sdk": "^0.0.6",
     "vg-web-sdk": "^1.1.1"
   },
   "devDependencies": {
