@@ -10,14 +10,15 @@ import { useKeycloak } from '@react-keycloak/web';
  */
 export const ProtectedRoute = ({ children }: AnyType): React.ReactElement | null => {
     const { keycloak, initialized } = useKeycloak();
-    if(initialized === false) {
+    
+    if (initialized === false) {
         return null;
     }
-    if ( !keycloak.authenticated) {
+
+    if (!keycloak.authenticated) {
         keycloak.login();
         return null;
-      }
-      console.log(keycloak.tokenParsed);
+    }
 
     return children;
 };

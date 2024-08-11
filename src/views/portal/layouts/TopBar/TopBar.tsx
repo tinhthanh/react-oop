@@ -1,8 +1,16 @@
 import React from "react";
 import { useLayoutContext } from "../../contexts/LayoutContext";
+import { useKeycloak } from '@react-keycloak/web';
+import Avatar from "boring-avatars";
 
 const TopBar: React.FC = (): React.JSX.Element => {
   const { breadcrumb } = useLayoutContext();
+  const { keycloak } = useKeycloak();
+  
+  function logout() {
+    keycloak.logout();
+  }
+
   return (
    (
       <div className="flex gap-2 justify-between px-6 py-3 w-full bg-white shadow-sm text-zinc-800 max-md:flex-wrap max-md:px-5 max-md:max-w-full position-sticky top-0">
@@ -38,6 +46,12 @@ const TopBar: React.FC = (): React.JSX.Element => {
               ))}
             </div>
           </div>
+        </div>
+        <div className="flex flex-row items-center gap-2">
+          <div>
+            {keycloak.tokenParsed?.preferred_username && <Avatar name={keycloak.tokenParsed?.preferred_username} size={24} />}
+          </div>
+          <button onClick={logout}>Log out</button>
         </div>
       </div>
     )
