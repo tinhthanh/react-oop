@@ -13,7 +13,7 @@ export interface BrowserTaskModel {
   serverIp: string;
   taskId: string;
   virtualUrl: string;
-  userId: string;
+  username: string;
 }
 
 function IconPlayFill({ ...props }: React.SVGProps<SVGSVGElement>): ReactNode {
@@ -51,7 +51,7 @@ export default function BrowserTaskList() {
               ProcessStepType.APP_STARTED,
               ProcessStepType.LOGIN_SUCCESS,
               ProcessStepType.LOGIN_FAILURE,
-            ].includes(x.processStep) && x.virtualUrl && x.userId === keycloak?.tokenParsed?.preferred_username
+            ].includes(x.processStep) && x.virtualUrl && x.username === keycloak?.tokenParsed?.preferred_username
         );
 
         setTask(availableTasks[0]);
@@ -65,6 +65,7 @@ export default function BrowserTaskList() {
     const taskRef = ref(database, `browser-task/${task?.taskId}`);
     const data = { ...task };
     data.processStep = ProcessStepType.CONNECT_GOOGLE;
+    data.username = keycloak?.tokenParsed?.preferred_username;
     update(taskRef, data);
     setIsLoading(false);
   }
