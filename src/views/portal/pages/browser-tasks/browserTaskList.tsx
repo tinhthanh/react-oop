@@ -51,7 +51,7 @@ export default function BrowserTaskList() {
               ProcessStepType.APP_STARTED,
               ProcessStepType.LOGIN_SUCCESS,
               ProcessStepType.LOGIN_FAILURE,
-            ].includes(x.processStep) && x.virtualUrl && x.username === keycloak?.tokenParsed?.preferred_username
+            ].includes(x.processStep) && x.virtualUrl
         );
 
         setTask(availableTasks[0]);
