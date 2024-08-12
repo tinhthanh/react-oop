@@ -10,13 +10,11 @@ import { ProcessStepType } from "../../../../types/commonType";
 import { toast } from "sonner";
 import { OrbitProgress } from "react-loading-indicators";
 
-function IconFullscreen({ height = 16, width = 16, ...props }: any) {
+function IconFullscreen({ ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="currentColor"
-      height={height}
-      width={width}
       {...props}
     >
       <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z" />
@@ -149,8 +147,8 @@ export default function BrowserTask() {
 
   return (
     <div className="h-[calc(100vh - 48px)] overflow-y-auto">
-      <div className="flex flex-col self-stretch gap-4">
-        <div className="flex gap-5 px-5 w-full justify-between">
+      <div className="flex flex-col self-stretch gap-2">
+        <div className="flex gap-2 px-6 w-full justify-between">
           <div className="justify-center py-1.5 max-md:max-w-full text-xl font-semibold leading-7 text-gray-800">
             Brower Task
           </div>
@@ -208,8 +206,7 @@ export default function BrowserTask() {
                   onClick={openFullscreen}
                   className="flex flex-row items-center hover:bg-blue-100 px-2 py-1 rounded-md"
                 >
-                  <IconFullscreen />
-                  <span className="ml-2">Full screen</span>
+                  <IconFullscreen width={20} height={20} />
                 </button>
               )}
             </div>
