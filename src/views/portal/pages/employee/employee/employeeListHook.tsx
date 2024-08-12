@@ -5,6 +5,7 @@ import { useLayoutContext } from "../../../contexts/LayoutContext";
 import { EmployeeListState } from "./employeeListState";
 import { useNavigate } from 'react-router-dom';
 import { AppRouter } from "../../../../../RouterType";
+import { AnyType } from "../../../../../types/baseType";
 
 function EmployeeHook() {
     const [employeeService] = useState(inject(EmployeeService));
@@ -21,7 +22,7 @@ function EmployeeHook() {
 
     async function onSearch(filter: {pageNumber: number; pageSize: number}) {
         //   await componentState.onSearch(filter);
-          employeeService.search(filter).then((rs: any) => {
+          employeeService.search(filter).then((rs: AnyType) => {
             componentState.rsList = rs;
             const pageState: EmployeeListState = componentState.copy();
             setComponentState(pageState);
