@@ -5,8 +5,8 @@ import { LayoutProvider, useLayoutContext } from "../contexts/LayoutContext";
 import { Layout, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { AppRouter } from "../../../RouterType";
-import TopBar from "./TopBar/TopBar";
 import { Toaster } from 'sonner';
+import { useKeycloak } from "@react-keycloak/web";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -79,6 +79,7 @@ const menu = [
 
 export function LayoutPortal(): React.JSX.Element {
   const { collapsed, setCollapsed , setActiveMenuItem} = useLayoutContext();
+  const { keycloak } = useKeycloak();
   const navigate = useNavigate();
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     navigate(e.key); // Điều hướng đến trang tương ứng
@@ -93,6 +94,9 @@ export function LayoutPortal(): React.JSX.Element {
   async function getProfile() {
     setMenuItems(menu);
   }
+  function logout() {
+    keycloak.logout();
+  }
 
   useEffect(() => {
     getProfile();
@@ -103,12 +107,11 @@ export function LayoutPortal(): React.JSX.Element {
      <Layout style={{ minHeight: '100vh' }}>
       <Sider width={230} theme="light"  collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="p-2 flex items-center justify-center" >
-         LOGO
+        <button onClick={logout}>Log out</button>
         </div>
         <LeftBar items={menuItems} onMenuClick={handleMenuClick} />
       </Sider>
       <Layout >
-          <TopBar/>
           <Outlet />
       </Layout>
       <Toaster position="top-right" closeButton richColors />
