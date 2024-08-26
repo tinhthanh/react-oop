@@ -1,22 +1,38 @@
-const express = require('express');
+const express = require("express");
+const compression = require('compression');
+const cors = require('cors');
 const { chromium } = require('playwright');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 4172;
+const port = 4173;
+const appFolder = 'dist';
 
 const windowWidth = 320;
 const windowHeight = 400;
 const screenWidth = 1920; // Giả sử độ rộng màn hình là 1920 pixel
 const maxBrowsersPerBatch = 5; // Số lượng tối đa mỗi lần xử lý
 
+// Cấu hình server cho ứng dụng tĩnh
+app.use(cors());
+app.use(compression());
+app.use(express.static(appFolder));
+
+app.get('*', function (request, response, next) {
+    if (request.path === '/noti') {
+        next(); // Chuyển tiếp đến middleware API Playwright
+    } else {
+        response.sendFile(__dirname + '/' + appFolder + '/index.html');
+    }
+});
+
+// API cho Playwright xử lý nhiều trình duyệt
 app.get('/noti', async (req, res) => {
-  const totalBrowsers = parseInt(req.query.count) || 1; // Nhận vào số lượng trình duyệt từ query string
+  const totalBrowsers = parseInt(req.query.count) || 1;
   const results = [];
 
-  // Tính toán số lượng batch (nhóm) cần thiết
   const numBatches = Math.ceil(totalBrowsers / maxBrowsersPerBatch);
 
   for (let batch = 0; batch < numBatches; batch++) {
@@ -33,33 +49,29 @@ app.get('/noti', async (req, res) => {
 
       const browser = await chromium.launchPersistentContext(userDataDir, {
         headless: false,
-        permissions: ['notifications'], // Cấp quyền nhận thông báo
-        viewport: { width: windowWidth, height: windowHeight }, // Kích thước cửa sổ trình duyệt
-        args: [`--window-position=${x},${y}`] // Vị trí cửa sổ trên màn hình
+        permissions: ['notifications'],
+        viewport: { width: windowWidth, height: windowHeight },
+        args: [`--window-position=${x},${y}`]
       });
 
       const page = await browser.newPage();
+      await page.goto(`http://localhost:${port}`);
 
-      await page.goto(`http://localhost:4173`);
-
-      // Tự động cấp quyền nhận thông báo từ web
       const context = page.context();
-      await context.grantPermissions(['notifications'], { origin: 'http://localhost:4173' });
+      await context.grantPermissions(['notifications'], { origin: `http://localhost:${port}` });
 
       let textContent = null;
 
-      for (let attempt = 0; attempt < 10; attempt++) { // Thử tối đa 3 lần
+      for (let attempt = 0; attempt < 10; attempt++) {
         try {
-          // Đợi 1 giây và reload lại trang nếu cần
           await new Promise(resolve => setTimeout(resolve, 1000));
           if (attempt > 0) {
-            await page.reload(); // Reload nếu không thành công
+            await page.reload();
           }
 
-          // Đợi cho phần tử có văn bản xuất hiện
           const elementText = await page.waitForSelector('[data-show="true"]', { timeout: 10000 });
           textContent = await elementText.evaluate(node => node.innerText);
-          break; // Nếu thành công, thoát khỏi vòng lặp
+          break;
 
         } catch (error) {
           if (attempt === 9) {
@@ -70,10 +82,8 @@ app.get('/noti', async (req, res) => {
         }
       }
 
-      // Đóng trình duyệt nếu cần
       await browser.close();
 
-      // Push kết quả vào danh sách nếu lấy được
       if (textContent) {
         results.push(textContent);
       } else {
@@ -81,16 +91,16 @@ app.get('/noti', async (req, res) => {
       }
     });
 
-    // Chạy tất cả các trình duyệt trong batch này
     await Promise.all(browserPromises);
   }
 
   res.send({
     status: 'success',
-    results: results, // Trả về danh sách văn bản từ các trình duyệt
+    results: results,
   });
 });
 
+// Khởi chạy server
 app.listen(port, () => {
-  console.log(`API listening at http://localhost:${port}`);
+  console.log(`App and API listening at http://localhost:${port}`);
 });
